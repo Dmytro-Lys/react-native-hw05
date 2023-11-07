@@ -23,7 +23,7 @@
         "foregroundImage": "./src/assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "android.config.googleMaps.apiKey": "AIzaSyAaqlug-eLWOM1RXNYsGpJPIEAkN6-SRDk"
+      "android.config.googleMaps.apiKey": ""
       
     },
     "web": {
