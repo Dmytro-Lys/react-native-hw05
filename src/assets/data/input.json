@@ -1,0 +1,45 @@
+{
+    "userName":
+        {
+            "placeholder": "Логін",
+            "pattern": "^[a-zA-Z]+(([-_ ][a-zA-Z])?[a-zA-Z]*)*$",
+            "type": "username",
+            "minlength": "3"
+            
+        },
+    "email":{
+        "placeholder": "Адреса електронної пошти",
+        "pattern": "^([0-9A-Za-z]{1}([-_\\.]?[0-9A-Za-z]+)*)@(([0-9A-Za-z]{1}([-_]?[0-9A-Za-z]+)*\\.){1,2}[A-Za-z]{2,})$",
+        "type": "emailAddress",
+        "keyboardType": "email-address"
+    },
+    "password":{
+         "placeholder": "Пароль",
+        "pattern": "(?=.*[0-9])(?=.*[!@#$%^&*()\\-\\_=+,<.>/?;:'\\[\\]{}|])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*()\\-\\_=+,<.>/?;:'\\[\\]{}|]+",
+        "type": "password",
+        "minlength": "8"
+    },
+     "postName":
+        {
+            "placeholder": "Назва",
+            "pattern": "^[a-zA-Zа-яієїА-ЯІЄЇ]+([- '][0-9a-zа-яієїA-ZА-ЯІЄЇ])*$",
+            "type": "name",
+            "minlength": "3"
+            
+        },
+      "postLocation":
+        {
+            "placeholder": "Місцевість",
+            "pattern": "^[a-zA-Zа-яієїА-ЯІЄЇ]+([- ',\\.][0-9a-zа-яієїA-ZА-ЯІЄЇ])*$",
+            "type": "location",
+            "minlength": "3"
+            
+        },  
+        "comment":
+        {
+            "placeholder": "Коментувати...",
+            "pattern": "^[0-9a-zA-Zа-яієїА-ЯІЄЇ]+([.\\s])*$",
+            "type": "none",
+            "minlength": "3"
+        }   
+    }
