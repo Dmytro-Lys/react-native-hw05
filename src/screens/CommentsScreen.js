@@ -30,9 +30,9 @@ const CommentsScreen = () => {
         
         <View style={styles.container}>
            
-            <Header title="Коментарі">
+            {/* <Header title="Коментарі">
                 <SvgButton styleButton={styles.buttonSvg} onPress={back} svgWidth='24' svgHeight='24' svgFile={ArrowSvg} />
-            </Header> 
+            </Header>  */}
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
               <KeyboardAvoidingView behavior={Platform.OS == "ios" ? "padding" : "height"}>
             <View style={isShownKeyboard ? { ...styles.contentContainer, marginTop: -1 * isShownKeyboard} : styles.contentContainer}>
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'column',
          alignItems: 'flex-end',
-        paddingTop: 43,
+        // paddingTop: 43,
     },
     contentContainer: {
         flex: 1,

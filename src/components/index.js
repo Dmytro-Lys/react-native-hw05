@@ -9,6 +9,7 @@ export { default as ShowButton } from "./ShowButton.js";
 export { default as TextButton } from "./TextButton.js";
 export { default as SvgPlusButton } from "./SvgPlusButton.js";
 export { default as SvgButton } from "./SvgButton.js";
+export { default as SvgView } from "./SvgView.js";
 export { default as ErrorMessage } from "./ErrorMessage.js";
 export { default as Form } from "./Form.js";
 export { default as CreatePostsForm } from "./CreatePostsForm.js";

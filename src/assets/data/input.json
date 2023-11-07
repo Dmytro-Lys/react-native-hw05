@@ -22,7 +22,7 @@
      "postName":
         {
             "placeholder": "Назва",
-            "pattern": "^[a-zA-Zа-яієїА-ЯІЄЇ]+([- '][0-9a-zа-яієїA-ZА-ЯІЄЇ])*$",
+            "pattern": "^[a-zA-Zа-яієїА-ЯІЄЇ]+([- '0-9a-zа-яієїA-ZА-ЯІЄЇ])*$",
             "type": "name",
             "minlength": "3"
             
@@ -30,7 +30,7 @@
       "postLocation":
         {
             "placeholder": "Місцевість",
-            "pattern": "^[a-zA-Zа-яієїА-ЯІЄЇ]+([- ',\\.][0-9a-zа-яієїA-ZА-ЯІЄЇ])*$",
+            "pattern": "^[a-zA-Zа-яієїА-ЯІЄЇ]+([- ',\\.0-9a-zа-яієїA-ZА-ЯІЄЇ])*$",
             "type": "location",
             "minlength": "3"
             

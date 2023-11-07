@@ -1,9 +1,12 @@
 import { StyleSheet, View, TouchableWithoutFeedback, KeyboardAvoidingView, Dimensions, Keyboard } from 'react-native';
 import { useState, useEffect } from 'react';
+import * as Location from "expo-location";
+
 import PostContent from "../components/PostContent"
 import CreatePostsInput from './CreatePostsInput';
 import FormSubmitButton from './FormSubmitButton';
 import SvgButton from './SvgButton';
+import SvgView from './SvgView';
 import TrashSvg from "../assets/images/trash.svg";
 import MapPinSvg from "../assets/images/map-pin.svg";
 
@@ -19,6 +22,28 @@ const CreatePostsForm = () => {
     const [formValues, setFormValues] = useState(defaultValues)
     const [isShownKeyboard, setIsShownKeyboard] = useState(null)
     const [hasShowedKeyboard, setHasShowedKeyboard] = useState(false)
+    const [isSubmit, setIsSubmit] = useState(false)
+    const [location, setLocation] = useState(null);
+
+    useEffect(() => {
+        (async () => {
+            if (isSubmit) {
+                let { status } = await Location.requestBackgroundPermissionsAsync();
+                if (status !== "granted") {
+                    console.log("Permission to access location was denied");
+                }
+
+                let location = await Location.getCurrentPositionAsync({});
+                const coords = {
+                    latitude: location.coords.latitude,
+                    longitude: location.coords.longitude,
+                };
+                setLocation(coords);
+            }
+    })();
+  }, [isSubmit]);
+    
+    
     
     useEffect(() => {
         const showSubscription = Keyboard.addListener('keyboardDidShow', () => {
@@ -34,6 +59,9 @@ const CreatePostsForm = () => {
             hideSubscription.remove();
         };
     }, []);
+
+
+
   
     const handleFormValueChange = (key, value) => {
         setFormValues(
@@ -54,18 +82,44 @@ const CreatePostsForm = () => {
                 ...formValues,
                 ...defaultValues
             });
+        setIsSubmit(false);
+        setLocation(null);
     }
 
-    const onSubmit = () => {
+   
+    const getPostLocationText = () => {
+        const { postLocation: { value } } = formValues
+        const indexRegion = value.lastIndexOf(",");
+        const country = indexRegion >= 0 ? value.slice(indexRegion + 1, value.length) : value;
+        const region = indexRegion >= 0 ? value.slice(0, indexRegion) : '';
+        return {
+            region,
+            country
+        }
+    }
+    
+    const getPostLocation = () => {
+       formValues.postLocation.value = {...location, ...getPostLocationText()}
+    }
+    
+    const onSubmit = () => setIsSubmit(true)
+    
+    const handleSubmit = () => {
+        getPostLocation();
         const sendValues = Object.entries(formValues).reduce((obj, [key, value]) => {
             return {...obj, [key]: value.value }
         }, {})
         console.log(sendValues)
         reset()
     }
-    
-    const showMap = () => alert("show map")
 
+    useEffect(() => {
+        if (location) {
+           handleSubmit()
+       }
+    }, [location])
+    
+   
     return (
          <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
             <KeyboardAvoidingView behavior={Platform.OS == "ios" ? "padding" : "height"}>
@@ -75,7 +129,7 @@ const CreatePostsForm = () => {
                         <View style={styles.formElements}>
                             <CreatePostsInput inputName="postName" handleChange={handleFormValueChange} inputValue={formValues.postName} />
                             <CreatePostsInput inputName="postLocation" handleChange={handleFormValueChange} inputValue={formValues.postLocation} >
-                                <SvgButton styleButton={styles.buttonMap} onPress={showMap} svgWidth='24' svgHeight='24' svgFile={MapPinSvg} />
+                                <SvgView styleView={styles.iconMap} svgFile={MapPinSvg} />
                             </CreatePostsInput>    
                         </View>
                         {checkEmpty() || !checkFormValidation()
@@ -124,15 +178,10 @@ const styles = StyleSheet.create({
         marginLeft: 'auto',
         marginRight: 'auto',
     },
-     buttonMap: {
+     iconMap: {
         position: 'absolute',
         bottom: 16,
         left: 0,
-        // transform: [{translateX: -35}],
-        maxWidth: 24,
-        width: 24,
-        maxHeight: 24,
-        height: 24,
   }
  
 });

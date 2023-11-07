@@ -16,7 +16,9 @@ const CreatePostsInput = ({ inputName, handleChange, inputValue, children }) => 
     
     const inputValidate = value => value.match(pattern) !== null && value.length >= minlength
     
-    const handleChangeInput = newValue => handleChange(inputName, { value: newValue, validation: inputValidate(newValue)})
+    const handleChangeInput = newValue => handleChange(inputName, { value: newValue, validation: inputValidate(newValue) })
+    
+    
 
     const styles = StyleSheet.create({
     inputBox: {

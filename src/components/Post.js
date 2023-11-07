@@ -1,4 +1,5 @@
-import {StyleSheet, View, Image, Text, Dimensions } from "react-native"
+import { StyleSheet, View, Image, Text, Dimensions } from "react-native"
+import { useNavigation } from '@react-navigation/native';
 import SvgButton from "./SvgButton";
 import Likes from "./Likes";
 import CommentSvg from "../assets/images/message-circle.svg";
@@ -6,9 +7,11 @@ import CommentSvgFill from "../assets/images/message-circle-fill.svg";
 import exampPost from "../assets/images/post.jpg"
 import MapPinSvg from "../assets/images/map-pin.svg";
 import PropTypes from "prop-types";
+import { LocalTile } from "react-native-maps";
 
 const Post = ({ dataPost, visibleLikes = false, visibleRegion = true }) => {
-    const { postId, image, postName, postLocation, postComents, postLikes } = dataPost
+    const navigation = useNavigation();
+    const { postId, image, postName, postLocation: {region, country, latitude, longitude}, postComents, postLikes } = dataPost
    
     const getURI = (file) => {
         const imageUri = Image.resolveAssetSource(file).uri
@@ -31,7 +34,9 @@ const Post = ({ dataPost, visibleLikes = false, visibleRegion = true }) => {
    
     const imageUri = imageToUri(image)
    
-    const addComment = () => alert('addComment');    
+    const addComment = () => navigation.navigate("Comments");    
+
+    const showMap = () => navigation.navigate("Map", {latitude, longitude});    
     return (
         <View style={styles.postContainer}>
             <Image style={styles.postImage} source={{uri: imageUri}} resizeMode="cover" />
@@ -45,8 +50,8 @@ const Post = ({ dataPost, visibleLikes = false, visibleRegion = true }) => {
                     {visibleLikes && <Likes likesCount={Number(postLikes)}/>}
                 </View>
                 <View style={styles.locationContainer}>
-                    <SvgButton styleButton={styles.buttonMap} onPress={addComment} svgWidth='24' svgHeight='24' svgFile={MapPinSvg}/>
-                    <Text style={styles.locationText}>{visibleRegion  ? `${postLocation.region} Region, ${postLocation.country}` : postLocation.country}</Text>
+                    <SvgButton styleButton={styles.buttonMap} onPress={showMap} svgWidth='24' svgHeight='24' svgFile={MapPinSvg}/>
+                    <Text style={styles.locationText}>{visibleRegion  ? `${region} Region, ${country}` : country}</Text>
                 </View>    
             </View>
         </View>

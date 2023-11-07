@@ -1,39 +1,45 @@
 [
         {
-          "postId": "1",
+            "userId": "1",
+            "postId": "1",
             "image": "post.jpg",      
         "postName" : "Ліс",
         "postLocation" : {
             "region": "Ivano-Frankivs'k",
-            "country": "Ukraine"
+            "country": "Ukraine",
+            "latitude": "48.93330",
+            "longitude": "24.64577"
         },
         "postComents": [],
         "postLikes": "0"
         },
          {
+          "userId": "1",  
           "postId": "2"  ,
           "image": "second-post.jpg",      
         "postName" : "Захід на Чорному морі",
         "postLocation" : {
             "region": "Crimea",
-            "country": "Ukraine"
+            "country": "Ukraine",
+            "latitude": "44.42032",
+            "longitude": "33.67732"
         },
         "postComents": [
             {
                 "commentId": "1",
-                "userId": "../assets/images/avatar-e.jpg",
+                "userId": "2",
                 "comment": "Really love your most recent photo. I’ve been trying to capture the same thing for a few months and would love some tips!",
                 "date": "09 червня, 2020 | 08:40"
             },
             {
                 "commentId": "2", 
-                "userId": "../assets/images/avatar.jpg",
+                "userId": "1",
                 "comment": "A fast 50mm like f1.8 would help with the bokeh. I’ve been using primes as they tend to get a bit sharper images.",
                 "date": "09 червня, 2020 | 09:14"
             },
              {
                 "commentId": "3",
-                "userId": "../assets/images/avatar-e.jpg",
+                "userId": "2",
                 "comment": "Thank you! That was very helpful!",
                 "date": "09 червня, 2020 | 09:20"
             }
