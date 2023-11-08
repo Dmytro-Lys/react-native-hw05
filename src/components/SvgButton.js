@@ -2,10 +2,11 @@ import { StyleSheet, Pressable } from 'react-native';
 import { SvgXml } from 'react-native-svg';
 import PropTypes from "prop-types";
 
-const SvgButton = ({ styleButton = {}, onPress, svgWidth, svgHeight, svgFile, fill = 'none', rotation = 0 }) => {
+const SvgButton = ({ styleButton = {}, onPress, svgWidth, svgHeight, svgFile, fill = 'none', rotation = 0, disabled = false }) => {
     return (
           <Pressable
             onPress={onPress}
+            disabled={disabled}
             style={[styles.buttonBase, styleButton]}>
             <SvgXml width={svgWidth} height={svgHeight} fill={fill} rotation={rotation} xml={svgFile} />
           </Pressable>    
@@ -30,5 +31,6 @@ SvgButton.propTypes = {
   svgHeight: PropTypes.string.isRequired,
   svgFile: PropTypes.string.isRequired,
   fill: PropTypes.string,
-   rotation: PropTypes.number
+  rotation: PropTypes.number,
+   disabled: PropTypes.bool
 }

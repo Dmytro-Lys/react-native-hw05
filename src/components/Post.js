@@ -28,7 +28,8 @@ const Post = ({ dataPost, visibleLikes = false, visibleRegion = true }) => {
     
     const imageToUri = (image) => {
         const { path, dpi } = getURI(exampPost)
-        const newFileName = dpi ? `${image.slice(0, image.indexOf("."))}${dpi}.jpg` : image;
+        // const newFileName = dpi ? `${image.slice(0, image.indexOf("."))}${dpi}.jpg` : image;
+        const newFileName = `${image}.jpg`;
         return `${path}${newFileName}`
     }
    

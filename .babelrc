@@ -6,6 +6,7 @@
       {
         "extensions": [".svg"]
       }
-    ]
+    ],
+    ["module:react-native-dotenv"]
   ]
 }

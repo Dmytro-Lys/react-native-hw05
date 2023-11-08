@@ -1,5 +1,6 @@
 import { StyleSheet, View, TouchableWithoutFeedback, KeyboardAvoidingView, Dimensions, Keyboard } from 'react-native';
 import { useState, useEffect } from 'react';
+import { useNavigation } from '@react-navigation/native';
 import * as Location from "expo-location";
 
 import PostContent from "../components/PostContent"
@@ -24,7 +25,9 @@ const CreatePostsForm = () => {
     const [hasShowedKeyboard, setHasShowedKeyboard] = useState(false)
     const [isSubmit, setIsSubmit] = useState(false)
     const [location, setLocation] = useState(null);
-
+    
+      const navigation = useNavigation()
+    
     useEffect(() => {
         (async () => {
             if (isSubmit) {
@@ -102,7 +105,10 @@ const CreatePostsForm = () => {
        formValues.postLocation.value = {...location, ...getPostLocationText()}
     }
     
-    const onSubmit = () => setIsSubmit(true)
+    const onSubmit = () => {
+        // alert("submit")
+        setIsSubmit(true)
+    }
     
     const handleSubmit = () => {
         getPostLocation();
@@ -111,6 +117,7 @@ const CreatePostsForm = () => {
         }, {})
         console.log(sendValues)
         reset()
+       navigation.navigate('Posts')
     }
 
     useEffect(() => {
@@ -125,7 +132,7 @@ const CreatePostsForm = () => {
             <KeyboardAvoidingView behavior={Platform.OS == "ios" ? "padding" : "height"}>
                 <View style={styles.formWrapper}>
                     <View style={isShownKeyboard ? { ...styles.form, marginTop: -1 * isShownKeyboard} : styles.form}> 
-                        <PostContent contentImage={formValues.postImage} handleChange={handleFormValueChange}/>
+                        <PostContent contentImage={formValues.postImage} handleChange={handleFormValueChange} />
                         <View style={styles.formElements}>
                             <CreatePostsInput inputName="postName" handleChange={handleFormValueChange} inputValue={formValues.postName} />
                             <CreatePostsInput inputName="postLocation" handleChange={handleFormValueChange} inputValue={formValues.postLocation} >

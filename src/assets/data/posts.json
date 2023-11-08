@@ -2,7 +2,7 @@
         {
             "userId": "1",
             "postId": "1",
-            "image": "post.jpg",      
+            "image": "post",      
         "postName" : "Ліс",
         "postLocation" : {
             "region": "Ivano-Frankivs'k",
@@ -16,7 +16,7 @@
          {
           "userId": "1",  
           "postId": "2"  ,
-          "image": "second-post.jpg",      
+          "image": "second-post",      
         "postName" : "Захід на Чорному морі",
         "postLocation" : {
             "region": "Crimea",
